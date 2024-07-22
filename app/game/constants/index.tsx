@@ -1,0 +1,3 @@
+export const GAME_CONSTANTS = {
+    PLAYER_INITIAL_TOKENS: 3,
+};

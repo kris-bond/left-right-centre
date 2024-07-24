@@ -3,24 +3,18 @@ import { IPlayer } from '../models/Player';
 
 import { PLAYER_INITIAL_TOKENS } from '../constants'
 
-const useGameInitialisation = () => {
-  const [players, setPlayers] = useState<IPlayer[]>(
-    Array.from({ length: 3 }, (_, i) => ({
-      id: i,
-      name: `Player ${i + 1}`,
-      tokens: PLAYER_INITIAL_TOKENS,
+const useGameInitialise = (initialPlayers: IPlayer[]) => {
+const [players, setPlayers] = useState<IPlayer[]>(initialPlayers);
+
+const resetGame = () => {
+  setPlayers(
+    initialPlayers.map((player) => ({
+      ...player,
+      chips: PLAYER_INITIAL_TOKENS,
     }))
   );
-
-  const resetGame = () => {
-    setPlayers(
-      Array.from({ length: 3 }, (_, i) => ({
-        id: i,
-        name: `Player ${i + 1}`,
-        tokens: PLAYER_INITIAL_TOKENS,
-      }))
-    );
-  };
+  console.log('Game reset:', players);
+};
 
   return {
     players,
@@ -29,4 +23,4 @@ const useGameInitialisation = () => {
   };
 };
 
-export default useGameInitialisation;
+export default useGameInitialise;

@@ -15,7 +15,6 @@ class Player {
         this.tokens = tokens;
     }
 
-    
 }
 
 export default Player;

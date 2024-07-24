@@ -2,9 +2,11 @@ import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import useGameInitialise from './game/hooks/useGameInitialise';
 import useGameUpdate from './game/hooks/useGameUpdate';
+import { IPlayer } from './game/models/Player';
 
-const game: React.FC = () => {
-  const { players, setPlayers, resetGame } = useGameInitialise();
+const GamePage: React.FC<{ route: any }> = ({ route }) => {
+  const { players: initialPlayers } = route.params;
+  const { players, setPlayers, resetGame } = useGameInitialise(initialPlayers);
   const { currentPlayer, takeTurn } = useGameUpdate(players, setPlayers);
 
   return (
@@ -41,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default game;
+export default GamePage;

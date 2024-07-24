@@ -20,7 +20,6 @@ export default function HomeScreen() {
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <Link href="/game" style={{color: 'blue'}}>Play</Link>
-        <Link href="/settings" style={{color: 'blue'}}>Settings</Link>
         <Link href="/help" style={{color: 'blue'}}>Help</Link>
       </ThemedView>
     </ParallaxScrollView>

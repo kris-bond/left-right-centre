@@ -1,3 +1,10 @@
+export interface IPlayer {
+    name: string;
+    tokens: number;
+    addTokens: (amount: number) => void;
+    removeTokens: (amount: number) => void;
+}
+
 class Player {
     name: string;
     tokens: number;

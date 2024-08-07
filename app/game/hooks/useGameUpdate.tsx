@@ -4,6 +4,7 @@ import { DICE_SIDES } from '../constants';
 
 const useGameLogic = (players: IPlayer[], setPlayers: React.Dispatch<React.SetStateAction<IPlayer[]>>) => {
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
+  const [diceRolls, setDiceRolls] = useState<string[]>([]);
 
   const rollDice = () => {
     const numDice = Math.min(players[currentPlayerIndex].tokens, 3);
@@ -13,6 +14,7 @@ const useGameLogic = (players: IPlayer[], setPlayers: React.Dispatch<React.SetSt
 
   const takeTurn = () => {
     const rolls = rollDice();
+    setDiceRolls(rolls);
     const newPlayers = [...players];
 
     rolls.forEach(roll => {
@@ -34,6 +36,7 @@ const useGameLogic = (players: IPlayer[], setPlayers: React.Dispatch<React.SetSt
   return {
     currentPlayer: players[currentPlayerIndex],
     takeTurn,
+    diceRolls,
   };
 };
 

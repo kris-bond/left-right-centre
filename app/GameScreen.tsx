@@ -4,10 +4,10 @@ import useGameInitialise from './game/hooks/useGameInitialise';
 import useGameUpdate from './game/hooks/useGameUpdate';
 import { IPlayer } from './game/models/Player';
 
-const GamePage: React.FC<{ route: any }> = ({ route }) => {
+const GameScreen: React.FC<{ route: any }> = ({ route }) => {
   const { players: initialPlayers } = route.params;
   const { players, setPlayers, resetGame, gameOver, winner } = useGameInitialise(initialPlayers);
-  const { currentPlayer, takeTurn } = useGameUpdate(players, setPlayers);
+  const { currentPlayer, takeTurn, diceRolls } = useGameUpdate(players, setPlayers);
 
   return (
     <View style={styles.container}>
@@ -19,12 +19,19 @@ const GamePage: React.FC<{ route: any }> = ({ route }) => {
         </View>
       ) : (
         <View style={styles.container}>
+          <Text style={styles.currentPlayerText}>Current Player: {currentPlayer.name}</Text>
+          {diceRolls.length > 0 && (
+            <View style={styles.diceRollContainer}>
+              {diceRolls.map((roll, index) => (
+                <Text key={index} style={styles.diceRollText}>{roll}</Text>
+              ))}
+            </View>
+          )}
           {players.map((player) => (
             <Text key={player.id} style={styles.playerText}>
               {player.name}: {player.tokens} tokens
             </Text>
           ))}
-          <Text style={styles.currentPlayerText}>Current Player: {currentPlayer.name}</Text>
           <Button title="Take Turn" onPress={takeTurn} />
           <Button title="Reset Game" onPress={resetGame} />
         </View>
@@ -66,6 +73,15 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     color: 'white',
   },
+  diceRollContainer: {
+    flexDirection: 'row',
+    marginVertical: 20,
+  },
+  diceRollText: {
+    fontSize: 20,
+    marginHorizontal: 10,
+    color: 'white',
+  },
 });
 
-export default GamePage;
+export default GameScreen;

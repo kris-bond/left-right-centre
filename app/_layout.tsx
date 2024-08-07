@@ -11,6 +11,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './HomeScreen';
 import SetupScreen from './SetupScreen';
 import GameScreen from './GameScreen';
+import HelpScreen from './HelpScreen';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -41,15 +42,8 @@ export default function RootLayout() {
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="SetupScreen" component={SetupScreen} />
         <Stack.Screen name="GameScreen" component={GameScreen} />
+        <Stack.Screen name="HelpScreen" component={HelpScreen} />
       </Stack.Navigator>
-    
-
-    {/* //<Stack>
-    //  <Stack.Screen name="index" options={{ headerShown: false }} />
-    //  <Stack.Screen name="+not-found" />
-    //</Stack> */}
-
-    
       
     </ThemeProvider>
 

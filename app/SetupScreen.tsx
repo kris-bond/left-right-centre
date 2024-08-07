@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, ScrollView } from 'react-native';
 import { IPlayer } from './game/models/Player';
 import { PLAYER_INITIAL_TOKENS } from './game/constants';
+import Slider from '@react-native-community/slider';
 
 const SetupScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [numPlayers, setNumPlayers] = useState(3);
@@ -13,8 +14,8 @@ const SetupScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
     setPlayerNames(newPlayerNames);
   };
 
-  const handleNumPlayersChange = (value: string) => {
-    const number = parseInt(value);
+  const handleNumPlayersChange = (value: number) => {
+    const number = value;
     setNumPlayers(number);
 
     const newPlayerNames = Array.from({ length: number }, (_, i) => playerNames[i] || `Player ${i + 1}`);
@@ -33,11 +34,14 @@ const SetupScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.label}>Number of Players:</Text>
-      <TextInput
-        style={styles.input}
-        keyboardType="number-pad"
-        value={numPlayers.toString()}
-        onChangeText={handleNumPlayersChange}
+      <Text style={styles.label}>{numPlayers}</Text>
+      <Slider
+        style={styles.slider}
+        minimumValue={3}
+        maximumValue={10}
+        step={1}
+        value={numPlayers}
+        onValueChange={handleNumPlayersChange}
       />
       {Array.from({ length: numPlayers }, (_, i) => (
         <View key={i} style={styles.playerInputContainer}>
@@ -77,6 +81,10 @@ const styles = StyleSheet.create({
   },
   playerInputContainer: {
     marginBottom: 16,
+  },
+  slider: {
+    width: 200,
+    color: 'white'
   },
 });
 

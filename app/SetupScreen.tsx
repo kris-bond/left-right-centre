@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  StyleSheet,
+  ScrollView,
+} from 'react-native';
 import { IPlayer } from './game/models/Player';
 import { PLAYER_INITIAL_TOKENS } from './game/constants';
 import Slider from '@react-native-community/slider';
 
 const SetupScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [numPlayers, setNumPlayers] = useState(3);
-  const [playerNames, setPlayerNames] = useState<string[]>(['Player 1', 'Player 2', 'Player 3']);
+  const [playerNames, setPlayerNames] = useState<string[]>([
+    'Player 1',
+    'Player 2',
+    'Player 3',
+  ]);
 
   const handlePlayerChange = (index: number, name: string) => {
     const newPlayerNames = [...playerNames];
@@ -18,7 +29,10 @@ const SetupScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
     const number = value;
     setNumPlayers(number);
 
-    const newPlayerNames = Array.from({ length: number }, (_, i) => playerNames[i] || `Player ${i + 1}`);
+    const newPlayerNames = Array.from(
+      { length: number },
+      (_, i) => playerNames[i] || `Player ${i + 1}`
+    );
     setPlayerNames(newPlayerNames);
   };
 
@@ -84,7 +98,7 @@ const styles = StyleSheet.create({
   },
   slider: {
     width: 200,
-    color: 'white'
+    color: 'white',
   },
 });
 

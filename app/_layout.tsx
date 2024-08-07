@@ -1,4 +1,9 @@
-import { DarkTheme, DefaultTheme, ThemeProvider, NavigationContainer } from '@react-navigation/native';
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+  NavigationContainer,
+} from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 //import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -35,17 +40,13 @@ export default function RootLayout() {
   }
 
   return (
-    
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-
       <Stack.Navigator initialRouteName="HomeScreen">
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="SetupScreen" component={SetupScreen} />
         <Stack.Screen name="GameScreen" component={GameScreen} />
         <Stack.Screen name="HelpScreen" component={HelpScreen} />
       </Stack.Navigator>
-      
     </ThemeProvider>
-
   );
 }

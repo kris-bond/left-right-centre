@@ -2,13 +2,19 @@ import { useState } from 'react';
 import { IPlayer } from '../models/Player';
 import { DICE_SIDES } from '../constants';
 
-const useGameLogic = (players: IPlayer[], setPlayers: React.Dispatch<React.SetStateAction<IPlayer[]>>) => {
+const useGameLogic = (
+  players: IPlayer[],
+  setPlayers: React.Dispatch<React.SetStateAction<IPlayer[]>>
+) => {
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const [diceRolls, setDiceRolls] = useState<string[]>([]);
 
   const rollDice = () => {
     const numDice = Math.min(players[currentPlayerIndex].tokens, 3);
-    const rolls = Array.from({ length: numDice }, () => DICE_SIDES[Math.floor(Math.random() * DICE_SIDES.length)]);
+    const rolls = Array.from(
+      { length: numDice },
+      () => DICE_SIDES[Math.floor(Math.random() * DICE_SIDES.length)]
+    );
     return rolls;
   };
 
@@ -17,13 +23,15 @@ const useGameLogic = (players: IPlayer[], setPlayers: React.Dispatch<React.SetSt
     setDiceRolls(rolls);
     const newPlayers = [...players];
 
-    rolls.forEach(roll => {
+    rolls.forEach((roll) => {
       if (roll === 'L') {
         newPlayers[currentPlayerIndex].tokens--;
         newPlayers[(currentPlayerIndex + 1) % newPlayers.length].tokens++;
       } else if (roll === 'R') {
         newPlayers[currentPlayerIndex].tokens--;
-        newPlayers[(currentPlayerIndex - 1 + newPlayers.length) % newPlayers.length].tokens++;
+        newPlayers[
+          (currentPlayerIndex - 1 + newPlayers.length) % newPlayers.length
+        ].tokens++;
       } else if (roll === 'C') {
         newPlayers[currentPlayerIndex].tokens--;
       }

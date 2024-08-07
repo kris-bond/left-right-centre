@@ -24,5 +24,5 @@ const styles = StyleSheet.create({
   },
   helpText: {
     color: 'white',
-  }
+  },
 });

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import useGameInitialise from './game/hooks/useGameInitialise';
 import useGameUpdate from './game/hooks/useGameUpdate';
@@ -6,8 +6,12 @@ import { IPlayer } from './game/models/Player';
 
 const GameScreen: React.FC<{ route: any }> = ({ route }) => {
   const { players: initialPlayers } = route.params;
-  const { players, setPlayers, resetGame, gameOver, winner } = useGameInitialise(initialPlayers);
-  const { currentPlayer, takeTurn, diceRolls } = useGameUpdate(players, setPlayers);
+  const { players, setPlayers, resetGame, gameOver, winner } =
+    useGameInitialise(initialPlayers);
+  const { currentPlayer, takeTurn, diceRolls } = useGameUpdate(
+    players,
+    setPlayers
+  );
 
   return (
     <View style={styles.container}>
@@ -15,15 +19,19 @@ const GameScreen: React.FC<{ route: any }> = ({ route }) => {
         <View style={styles.gameOverContainer}>
           <Text style={styles.gameOverText}>Game Over!</Text>
           <Text style={styles.winnerText}>{winner} is the winner!</Text>
-          <Button title="Reset Game" onPress={resetGame}/>
+          <Button title="Reset Game" onPress={resetGame} />
         </View>
       ) : (
         <View style={styles.container}>
-          <Text style={styles.currentPlayerText}>Current Player: {currentPlayer.name}</Text>
+          <Text style={styles.currentPlayerText}>
+            Current Player: {currentPlayer.name}
+          </Text>
           {diceRolls.length > 0 && (
             <View style={styles.diceRollContainer}>
               {diceRolls.map((roll, index) => (
-                <Text key={index} style={styles.diceRollText}>{roll}</Text>
+                <Text key={index} style={styles.diceRollText}>
+                  {roll}
+                </Text>
               ))}
             </View>
           )}

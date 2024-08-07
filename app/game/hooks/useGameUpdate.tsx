@@ -9,6 +9,16 @@ const useGameLogic = (
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const [diceRolls, setDiceRolls] = useState<string[]>([]);
 
+  const findNextPlayerWithChips = (startIndex: number) => {
+    for (let i = 0; i < players.length; i++) {
+      const index = (startIndex + i) % players.length;
+      if (players[index].tokens > 0) {
+        return index;
+      }
+    }
+    return -1; //no players with chips
+  };
+
   const rollDice = () => {
     const numDice = Math.min(players[currentPlayerIndex].tokens, 3);
     const rolls = Array.from(
@@ -38,7 +48,13 @@ const useGameLogic = (
     });
 
     setPlayers(newPlayers);
-    setCurrentPlayerIndex((currentPlayerIndex + 1) % newPlayers.length);
+
+    let nextPlayerIndex = findNextPlayerWithChips(currentPlayerIndex + 1);
+    if (nextPlayerIndex === -1) {
+      //no players with chips
+      nextPlayerIndex = findNextPlayerWithChips(0);
+    }
+    setCurrentPlayerIndex(nextPlayerIndex);
   };
 
   return {

@@ -8,10 +8,15 @@ const GameScreen: React.FC<{ route: any }> = ({ route }) => {
   const { players: initialPlayers } = route.params;
   const { players, setPlayers, resetGame, gameOver, winner } =
     useGameInitialise(initialPlayers);
-  const { currentPlayer, takeTurn, diceRolls } = useGameUpdate(
+  const { currentPlayer, takeTurn, diceRolls, resetDiceRolls } = useGameUpdate(
     players,
     setPlayers
   );
+
+  const handleReset = () => {
+    resetGame();
+    resetDiceRolls();
+  };
 
   return (
     <View style={styles.container}>
@@ -19,7 +24,7 @@ const GameScreen: React.FC<{ route: any }> = ({ route }) => {
         <View style={styles.gameOverContainer}>
           <Text style={styles.gameOverText}>Game Over!</Text>
           <Text style={styles.winnerText}>{winner} is the winner!</Text>
-          <Button title="Reset Game" onPress={resetGame} />
+          <Button title="Reset Game" onPress={handleReset} />
         </View>
       ) : (
         <View style={styles.container}>
@@ -41,7 +46,7 @@ const GameScreen: React.FC<{ route: any }> = ({ route }) => {
             </Text>
           ))}
           <Button title="Take Turn" onPress={takeTurn} />
-          <Button title="Reset Game" onPress={resetGame} />
+          <Button title="Reset Game" onPress={handleReset} />
         </View>
       )}
     </View>

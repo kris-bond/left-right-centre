@@ -57,10 +57,13 @@ const useGameLogic = (
     setCurrentPlayerIndex(nextPlayerIndex);
   };
 
+  const resetDiceRolls = () => setDiceRolls([]);
+
   return {
     currentPlayer: players[currentPlayerIndex],
     takeTurn,
     diceRolls,
+    resetDiceRolls,
   };
 };
 

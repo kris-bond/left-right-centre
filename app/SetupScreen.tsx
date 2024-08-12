@@ -7,7 +7,6 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
-import { IPlayer } from './game/models/Player';
 import { PLAYER_INITIAL_TOKENS } from './game/constants';
 import Slider from '@react-native-community/slider';
 

@@ -41,10 +41,41 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={DefaultTheme}>
       <Stack.Navigator initialRouteName="HomeScreen">
-        <Stack.Screen name="HomeScreen" component={HomeScreen} />
-        <Stack.Screen name="SetupScreen" component={SetupScreen} />
-        <Stack.Screen name="GameScreen" component={GameScreen} />
-        <Stack.Screen name="HelpScreen" component={HelpScreen} />
+        <Stack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{ headerTitle: 'Home', headerShown: false }}
+        />
+        <Stack.Screen
+          name="SetupScreen"
+          component={SetupScreen}
+          options={{
+            headerTitle: 'Setup',
+            headerStyle: {
+              backgroundColor: 'transparent',
+            },
+          }}
+        />
+        <Stack.Screen
+          name="GameScreen"
+          component={GameScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: {
+              backgroundColor: 'transparent',
+            },
+          }}
+        />
+        <Stack.Screen
+          name="HelpScreen"
+          component={HelpScreen}
+          options={{
+            headerTitle: '',
+            headerStyle: {
+              backgroundColor: 'transparent',
+            },
+          }}
+        />
       </Stack.Navigator>
     </ThemeProvider>
   );

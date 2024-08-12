@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet, Alert } from 'react-native';
 import useGameInitialise from './game/hooks/useGameInitialise';
 import useGameUpdate from './game/hooks/useGameUpdate';
 import { IPlayer } from './game/models/Player';
@@ -14,8 +14,30 @@ const GameScreen: React.FC<{ route: any }> = ({ route }) => {
   );
 
   const handleReset = () => {
-    resetGame();
-    resetDiceRolls();
+    if (!gameOver) {
+      Alert.alert(
+        'Confirm Reset',
+        'Are you sure you want to reset the game?',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel',
+          },
+          {
+            text: 'Reset',
+            onPress: () => {
+              resetGame();
+              resetDiceRolls();
+            },
+            style: 'destructive',
+          },
+        ],
+        { cancelable: true }
+      );
+    } else {
+      resetGame();
+      resetDiceRolls();
+    }
   };
 
   return (

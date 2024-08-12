@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     marginVertical: 8,
-    color: 'white',
+    color: 'black',
   },
   input: {
     width: 200,
@@ -90,14 +90,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 8,
     marginBottom: 16,
-    color: 'white',
+    color: 'black',
   },
   playerInputContainer: {
     marginBottom: 16,
   },
   slider: {
     width: 200,
-    color: 'white',
+    color: 'black',
   },
 });
 

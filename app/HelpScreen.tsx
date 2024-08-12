@@ -20,9 +20,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 16,
-    color: 'white',
+    color: 'black',
   },
   helpText: {
-    color: 'white',
+    color: 'black',
   },
 });

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { View, Text, Button, StyleSheet, Alert } from 'react-native';
 import useGameInitialise from './game/hooks/useGameInitialise';
 import useGameUpdate from './game/hooks/useGameUpdate';
-import { IPlayer } from './game/models/Player';
 
 const GameScreen: React.FC<{ route: any }> = ({ route }) => {
   const { players: initialPlayers } = route.params;
@@ -56,9 +55,11 @@ const GameScreen: React.FC<{ route: any }> = ({ route }) => {
           {diceRolls.length > 0 && (
             <View style={styles.diceRollContainer}>
               {diceRolls.map((roll, index) => (
-                <Text key={index} style={styles.diceRollText}>
-                  {roll}
-                </Text>
+                <View style={styles.dice}>
+                  <Text key={index} style={styles.diceRollText}>
+                    {roll}
+                  </Text>
+                </View>
               ))}
             </View>
           )}
@@ -85,37 +86,50 @@ const styles = StyleSheet.create({
   playerText: {
     fontSize: 18,
     margin: 4,
-    color: 'white',
+    color: 'black',
   },
   currentPlayerText: {
     fontSize: 20,
     fontWeight: 'bold',
     margin: 8,
-    color: 'white',
+    color: 'black',
   },
   gameOverContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    color: 'white',
+    color: 'black',
   },
   gameOverText: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'white',
+    color: 'black',
   },
   winnerText: {
     fontSize: 20,
     marginVertical: 10,
-    color: 'white',
+    color: 'black',
   },
   diceRollContainer: {
     flexDirection: 'row',
     marginVertical: 20,
+    gap: 20,
   },
   diceRollText: {
     fontSize: 20,
     marginHorizontal: 10,
-    color: 'white',
+    color: 'black',
+    fontWeight: 'bold',
+  },
+  dice: {
+    display: 'flex',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    height: 50,
+    width: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: 'black',
+    borderWidth: 1,
   },
 });
 

@@ -15,6 +15,11 @@ export default function HelpScreen() {
         means the player keeps their token.
       </Text>
       <Text style={styles.helpText}>
+        Players should be sat in a circle and listed in order, meaning that
+        player 2 should be sat to the left of player 1, player 3 to the left of
+        player 2 and so on.
+      </Text>
+      <Text style={styles.helpText}>
         The last player with tokens is the winner.
       </Text>
     </View>

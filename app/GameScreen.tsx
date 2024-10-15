@@ -55,10 +55,8 @@ const GameScreen: React.FC<{ route: any }> = ({ route }) => {
           {diceRolls.length > 0 && (
             <View style={styles.diceRollContainer}>
               {diceRolls.map((roll, index) => (
-                <View style={styles.dice}>
-                  <Text key={index} style={styles.diceRollText}>
-                    {roll}
-                  </Text>
+                <View key={index} style={styles.dice}>
+                  <Text style={styles.diceRollText}>{roll}</Text>
                 </View>
               ))}
             </View>

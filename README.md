@@ -1,15 +1,6 @@
-# TODO
+# Left Right Centre
 
-1. Ads
-2. Resetting game should also reset player? Or always randomise first player?
-3. Make alert appear if user tries to go back to setup screen
-4. For dice roll, recreate what I did with my website when hovering over my name
-5. Light and dark mode
-6. Improve help page
-7. Convey to the user that player 2 should be sitting next to the left of player 1 etc
-8. Make it look nicer
-9. Seem to get a warning message when I open up app - check it out
-10. Add more tests
+This is an Expo React Native app for Left Right Centre, a simple dice game.
 
 # Welcome to your Expo app 👋
 
